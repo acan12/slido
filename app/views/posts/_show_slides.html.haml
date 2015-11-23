@@ -1,0 +1,23 @@
+.panel.panel-default
+  .panel-heading
+    %strong Slides
+    %small
+  .panel-body
+
+    %table.table.table-hover
+      %thead
+        %tr
+          %th.column-01{"data-sortable" => "true"} Picture
+          %th.column-02{"data-sortable" => "true"} Caption
+      %tbody
+        %tr
+          %td.column-01
+            %a{"data-toggle" => "tooltip", :href => "#", :title => "Slide-1"} 
+            
+          %td.column-02
+            %span= "My Titleeexxxxjsk dksjlkdjs"
+            %button.btn.btn-labeled.btn-primary{"data-toggle" => "tooltip", :title => "Download <FileName>", :type => "button"}
+              %span.btn-label
+                %i.glyphicon.glyphicon-download
+        
+    %br

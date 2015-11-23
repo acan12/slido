@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_post, only: [:show, :edit, :update, :destroy, :like]
   before_action :owned_post, only: [:edit, :update, :destroy]
+  protect_from_forgery :except => :create
 
   def index
     @posts = Post.all.order('created_at DESC').page params[:page]
@@ -27,12 +28,13 @@ class PostsController < ApplicationController
   end
 
   def edit
+    @post = Post.find(params[:id])
   end
 
   def update
     if @post.update(post_params)
       flash[:success] = "Post updated."
-      redirect_to root_path
+      redirect_to edit_presentation_path(@post.presentation)
     else
       flash[:alert] = "Update failed.  Please check the form."
       render :edit
@@ -42,7 +44,8 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
     flash[:success] = "Your post has been deleted."
-    redirect_to root_path
+    redirect_to edit_presentation_path(@post.presentation)
+    
   end
 
   def like
@@ -57,9 +60,9 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:image, :caption)
+    params.require(:post).permit(:image, :caption, :presentation_id)
   end
-
+  
   def set_post
     @post = Post.find(params[:id])
   end

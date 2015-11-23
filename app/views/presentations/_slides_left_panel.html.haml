@@ -1,0 +1,49 @@
+.panel.panel-default
+  .panel-heading
+    %strong Slides
+    %small
+  .panel-body
+
+    %table.table.table-hover
+      %thead
+        %tr
+          %th.column-01 
+          %th.column-02 Caption
+          %th.column-03 Picture
+          %th.column-04 
+      %tbody
+        - @presentation.posts.each do |post|
+          %tr
+            %td.column-01
+              %button.btn.btn-labeled.btn-primary{"data-toggle" => "modal", "data-target": "#modal-post#{post.id}", :type => "button"}
+                %span.btn-label
+                  %i.glyphicon.glyphicon-download
+            %td.column-02
+              .caption.wordwrap= post.caption
+              
+
+              
+            %td.column-03
+              = link_to image_tag post.image.url(:small), width: "56px", height: "56px"
+            %td.column-04
+              = link_to "&times;".html_safe, post_path(post), class: "close-post", data: {confirm: 'Are you sure?'}, :method =>  :delete
+              
+            .modal.fade{ role: "dialog", id: "modal-post#{post.id}"}    
+              .modal-dialog
+                .modal-content
+                  .modal-header
+                    %button.close{"data-dismiss": "modal", type: "button"}= "&times;".html_safe
+                    %h4.modal-title= "Update Slide Caption"
+                  .modal-body
+
+                    = form_for(post, url: post_path(post)) do |f|
+                      = f.label :caption
+                      = f.text_field :caption, :class => "form-control", :placeholder => "fill the caption"
+
+                      .modal-footer
+
+                        = f.submit 'Save', :class => 'btn btn-primary'
+                        %button.btn.btn-default{"data-dismiss": "modal", type: "button"}= "Close";
+
+    %br
+

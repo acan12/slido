@@ -1,0 +1,55 @@
+.container
+  %br/
+  .row
+    .col-md-5
+      = render "show_slides"
+    .col-md-7
+      .panel.panel-default
+        .panel-heading
+          %strong Upload files
+          %small
+        .panel-body
+          .input-group.image-preview
+            %input.form-control.image-preview-filename{:disabled => "disabled", :placeholder => "", :type => "text"}/
+            / don't give a name === doesn't send on POST/GET
+            %span.input-group-btn
+              / image-preview-clear button
+              %button.btn.btn-default.image-preview-clear{:style => "display:none;", :type => "button"}
+                %span.glyphicon.glyphicon-remove
+                Clear
+              / image-preview-input
+              .btn.btn-default.image-preview-input
+                %span.glyphicon.glyphicon-folder-open
+                %span.image-preview-input-title Browse
+                %input#input-file{:accept => "image/png, image/jpeg, image/gif", :name => "input-file-preview", :type => "file"}/
+                / rename it
+              %button#btn-upload.btn.btn-labeled.btn-default{:type => "button"}
+                %span.btn-label>
+                  %i.glyphicon.glyphicon-upload
+                Upload
+          / /input-group image-preview [TO HERE]
+          %br/
+          / Drop Zone
+          #drop-zone.upload-drop-zone Or drag and drop files here
+          %br/
+          / Progress Bar
+          .progress
+            #progressbar.progress-bar{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "60", :role => "progressbar", :style => "width: 10%;"}
+              %span 0%
+          %br/
+          / / Upload Finished
+          / .js-upload-finished
+          /   %h4 Upload history
+          /   .list-group
+          /     %a.list-group-item.list-group-item-danger{:href => "#"}
+          /       %span.badge.alert-danger.pull-right> 23-11-2014
+          /       amended-catalogue-01.xls
+          /     %a.list-group-item.list-group-item-success{:href => "#"}
+          /       %span.badge.alert-success.pull-right> 23-11-2014
+          /       amended-catalogue-01.xls
+          /     %a.list-group-item.list-group-item-success{:href => "#"}
+          /       %span.badge.alert-success.pull-right> 23-11-2014
+          /       amended-catalogue-01.xls
+          /     %a.list-group-item.list-group-item-success{:href => "#"}
+          /       %span.badge.alert-success.pull-right> 23-11-2014
+          /       amended-catalogue.xls

@@ -1,11 +1,18 @@
 / = render "form" #OLD
-
-= render 'multiple_upload_pictures'
+= render 'slides_presentation_form' 
+= render 'slides_dashboard' 
 
 = content_for :scripts do
   :javascript
     $(function(){
+      var pid = $("#upload-panel").attr("pid");
       var $files = ""
+
+      
+      $("#caption-ok").click(function(){
+        alert("caption ok clicked .")
+      });
+      
       $("#input-file").change(function(){
         $files = $("#input-file")[0].files
         $(".image-preview-filename").val($files[0].name)
@@ -15,6 +22,7 @@
       $("#drop-zone").filedrop({
         url: "/posts",
         paramname: "post[image]",
+        data: { post: {presentation_id: pid } },
         maxfilesize: 100,
         dragOver: function(){
           $(this).addClass("drop")
@@ -23,8 +31,11 @@
           $(this).removeClass("drop");
         },
         progressUpdated: function(i, file, progress) {
-          console.log("---- :"+progress)
-          $('#progressbar').width(progress);
+          $('#progressbar').width(progress+"%");
+          $('#progressbar > span').text(progress+"% Complete");
+        },
+        afterAll: function(){
+          location.reload();
         }
       });
       
@@ -52,10 +63,10 @@
                     url: "/posts",
                     type: "POST",
                     data: {
-                      post: { image: this.result }
+                      post: { presentation_id: pid, image: this.result }
                     },
                     success: function(e){
-                      alert("success uploaded!.");
+                      location.reload();
                     },
                     xhr: function() {
                         myXhr = $.ajaxSettings.xhr();
