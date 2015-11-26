@@ -5,6 +5,17 @@ class PresentationsController < ApplicationController
     @presentations = Presentation.all.order("created_at DESC, updated_at DESC")
   end
   
+  def new
+    @presentation = Presentation.new
+  end
+  
+  def edit
+    @presentation = Presentation.find(params[:id])
+  end
+  
+  def show
+  end
+  
   def create
     @presentation = current_user.presentations.build(presentation_params)
     
@@ -18,6 +29,8 @@ class PresentationsController < ApplicationController
       end
     end
   end
+  
+  
   
   def update
     @presentation = Presentation.find(params[:id])
@@ -33,14 +46,13 @@ class PresentationsController < ApplicationController
     end
   end
   
-  def new
-    @presentation = Presentation.new
+
+  def destroy
+    ppt = Presentation.find params[:id]
+    ppt.destroy
+    
+    redirect_to presentations_path
   end
-  
-  def edit
-    @presentation = Presentation.find(params[:id])
-  end
-  
   
   private
   

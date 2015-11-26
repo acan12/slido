@@ -1,0 +1,24 @@
+.container
+  .row
+    #presentation.col-md-8
+      = render "live_slides"
+    #postcomment.col-lg-4.col-md-6 
+      = render "post_comments"
+
+  
+        
+= content_for :scripts do
+  :javascript
+    $(function(){
+
+      Reveal.initialize({
+        autoSlide: 10000,
+        showNotes: true,
+        slideNumber: true,
+        progress: true,
+        center: true,
+        transition: 'slide'
+      });
+
+    });
+    
