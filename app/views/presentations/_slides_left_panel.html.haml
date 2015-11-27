@@ -12,7 +12,7 @@
           %th.column-03 Picture
           %th.column-04 
       %tbody
-        - @presentation.posts.each do |post|
+        - @presentation.posts.order("created_at ASC").each do |post|
           %tr
             %td.column-01
               %button.btn.btn-labeled.btn-primary{"data-toggle" => "modal", "data-target": "#modal-post#{post.id}", :type => "button"}
