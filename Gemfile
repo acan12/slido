@@ -22,6 +22,7 @@ gem 'jquery-turbolinks'
 # created by ary
 gem 'paperclip-dimension-validator'
 gem 'reactjs-rails'
+gem 'rails_admin'
 
 
 
