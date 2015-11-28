@@ -2,7 +2,25 @@
   .row
     #presentation.col-md-8
       = render "live_slides"
-    #postcomment.col-lg-4.col-md-6 
+    .col-md-2
+      = image_tag @presentation.user.avatar.url, style: "width: 24px; height: 24px; "
+      - username = @presentation.user.try(:user_name)
+      = link_to username.humanize, profiles_show_path(user_name: username)
+    
+      
+    .col-md-2{ style: "text-align: right; padding-top: 5px;"}
+      
+      %span#share.glyphicon.glyphicon-share{style: "cursor: pointer;", title: "Copylink", permalink: presentation_url(id: @presentation.permalink.to_s)}
+      copylink
+      = "&nbsp;".html_safe
+      - if @presentation.user.likes?(@presentation)
+        %span#like.glyphicon.glyphicon-heart{ppt: @presentation.id, style: "cursor: pointer;", title: "Like"}
+      - else  
+        %span#like.glyphicon.glyphicon-heart-empty{ppt: @presentation.id, style: "cursor: pointer;", title: "UnLike"}
+
+      %span#like-text= "#{@presentation.likers_count} likes" 
+
+    #postcomment.col-lg-4.col-md-5
       = render "post_comments"
 
   
@@ -12,12 +30,11 @@
     $(function(){
 
       Reveal.initialize({
-        autoSlide: 10000,
+        progress: false,
         showNotes: true,
         slideNumber: true,
-        progress: true,
-        center: true,
-        transition: 'slide'
+        loop: true,
+        transition: 'concave'
       });
 
     });

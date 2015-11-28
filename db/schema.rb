@@ -11,21 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151121102552) do
+ActiveRecord::Schema.define(version: 20151128131359) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "comments", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "post_id"
     t.text     "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "presentation_id"
   end
 
-  add_index "comments", ["post_id"], name: "index_comments_on_post_id", using: :btree
+  add_index "comments", ["presentation_id"], name: "index_comments_on_presentation_id", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
+
+  create_table "likes", force: :cascade do |t|
+    t.string   "liker_type"
+    t.integer  "liker_id"
+    t.string   "likeable_type"
+    t.integer  "likeable_id"
+    t.datetime "created_at"
+  end
+
+  add_index "likes", ["likeable_id", "likeable_type"], name: "fk_likeables", using: :btree
+  add_index "likes", ["liker_id", "liker_type"], name: "fk_likes", using: :btree
 
   create_table "posts", force: :cascade do |t|
     t.string   "caption"
@@ -42,12 +53,15 @@ ActiveRecord::Schema.define(version: 20151121102552) do
   add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
 
   create_table "presentations", force: :cascade do |t|
-    t.text     "title",      default: ""
+    t.text     "title",        default: ""
     t.integer  "user_id"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.string   "permalink"
+    t.integer  "likers_count", default: 0
   end
 
+  add_index "presentations", ["permalink"], name: "index_presentations_on_permalink", using: :btree
   add_index "presentations", ["user_id"], name: "index_presentations_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
@@ -69,6 +83,7 @@ ActiveRecord::Schema.define(version: 20151121102552) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.text     "bio"
+    t.integer  "likees_count",           default: 0
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

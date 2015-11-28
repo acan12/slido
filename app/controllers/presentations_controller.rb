@@ -14,6 +14,7 @@ class PresentationsController < ApplicationController
   end
   
   def show
+    @presentation = Presentation.find_by_id_or_permalink(params[:id])
   end
   
   def create
@@ -52,6 +53,13 @@ class PresentationsController < ApplicationController
     ppt.destroy
     
     redirect_to presentations_path
+  end
+  
+  # AJAX
+  def ajax_like
+    ppt = Presentation.find params[:id]
+    current_user.toggle_like!(ppt)
+    render json: { status: current_user.likes?(ppt), count: ppt.reload.likers_count }
   end
   
   private

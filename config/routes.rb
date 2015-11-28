@@ -10,9 +10,14 @@ Rails.application.routes.draw do
   get ':user_name/edit', to: 'profiles#edit', as: :edit_profile
   patch ':user_name/edit', to: 'profiles#update', as: :update_profile
 
-  resources :presentations
-  resources :posts do
+  resources :presentations do
     resources :comments
+    member do
+      post 'ajax_like'
+    end
+  end
+  resources :posts do
+    # resources :comments
     member do
       get 'like'
     end

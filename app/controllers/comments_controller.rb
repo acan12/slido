@@ -1,8 +1,8 @@
 class CommentsController < ApplicationController
-  before_action :set_post
+  before_action :get_presentation
 
   def index
-    @comments = @post.comments.order('created_at asc')
+    @comments = @presentation.comments.order('created_at asc')
 
     respond_to do |format|
       format.html { render layout: !request.xhr? }
@@ -10,22 +10,25 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comment = @post.comments.build(comment_params)
+    @comment = @presentation.comments.build(comment_params)
     @comment.user_id = current_user.id
 
-    if @comment.save
-      respond_to do |format|
-        format.html { redirect_to root_path }
-        format.js
-      end
-    else
-      flash[:alert] = 'Check the comment form, something went wrong.'
-      render root_path
-    end
+    @comment.save
+    render layout: false
+         
+    # if @comment.save
+      # respond_to do |format|
+        # format.html { redirect_to root_path }
+        # format.js
+      # end
+    # else
+    #   flash[:alert] = 'Check the comment form, something went wrong.'
+    #   render root_path
+    # end
   end
 
   def destroy
-    @comment = @post.comments.find(params[:id])
+    @comment = Comment.find(params[:id])
 
     if @comment.user_id == current_user.id
       @comment.destroy
@@ -36,14 +39,15 @@ class CommentsController < ApplicationController
     end
   end
 
+
   private
 
   def comment_params
-    params.require(:comment).permit(:content)
+    params.require(:comment).permit(:content, :presentation_id)
   end
 
-  def set_post
-    @post = Post.find(params[:post_id])
+  def get_presentation
+    @presentation = Presentation.find(params[:presentation_id])
   end
 
 end

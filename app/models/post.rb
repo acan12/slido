@@ -1,9 +1,8 @@
 class Post < ActiveRecord::Base
-  acts_as_votable
+  # acts_as_votable
   
   belongs_to :user
   belongs_to :presentation
-  has_many :comments, dependent: :destroy
 
   validates :presentation_id, presence: true
   validates :user_id, presence: true

@@ -23,7 +23,8 @@ gem 'jquery-turbolinks'
 gem 'paperclip-dimension-validator'
 gem 'reactjs-rails'
 gem 'rails_admin'
-
+gem "has_permalink"
+gem "socialization"
 
 
 group :development, :test do

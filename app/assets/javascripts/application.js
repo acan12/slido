@@ -16,6 +16,8 @@
 //= require bootstrap-sprockets
 //= require turbolinks
 //= require jquery.turbolinks
+//= require posts
+//= require comments
 //
 //= require circle-progress
 //= require jquery.superslides.min
@@ -24,3 +26,4 @@
 //= require plugins/head.min
 //= require plugins/classList
 //= require plugins/zoom
+//= require plugins/clipboard

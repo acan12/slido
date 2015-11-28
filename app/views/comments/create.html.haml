@@ -1,0 +1,8 @@
+%strong.pull-left.primary-font
+  = image_tag @comment.user.avatar.url, style: "width: 24px; height: 24px; "
+  = link_to @comment.user.user_name.humanize, profiles_show_path(user_name: @comment.user.user_name)
+%small.pull-right.text-muted
+  %span.glyphicon.glyphicon-time
+  = time_ago_in_words(@comment.created_at)
+%li.ui-state-default= @comment.content
+%hr{"data-brackets-id" => "12673"}/
