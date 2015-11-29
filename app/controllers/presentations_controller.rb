@@ -19,22 +19,33 @@ class PresentationsController < ApplicationController
   
   def create
     @presentation = current_user.presentations.build(presentation_params)
-    
-    respond_to do |format|
-    
-      if @presentation.save
-      
-        format.html { redirect_to edit_presentation_path(@presentation), :notice =>  'Presentation was successfully created.' }
-      else
-        format.html { render :action =>  "new" }
+    begin
+      respond_to do |format|
+        if @presentation.save
+          format.html { redirect_to edit_presentation_path(@presentation), :notice =>  'Presentation was successfully created.' }
+  
+        else
+          format.html { render :action =>  "new" }
+        end
       end
+      
+    rescue
+      redirect_to new_moderator_topic_path
     end
+    # respond_to do |format|
+    # 
+    #   if @presentation.save
+    #     redirect_to edit_presentation_path(@presentation), :notice =>  'Presentation was successfully created.'
+    #   else
+    #     format.html { render :action =>  "new" }
+    #   end
+    # end
   end
   
   
   
   def update
-    @presentation = Presentation.find(params[:id])
+    @presentation = Presentation.find_by_id_or_permalink(params[:id])
     
     respond_to do |format|
     

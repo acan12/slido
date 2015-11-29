@@ -6,12 +6,12 @@
         %span.icon-bar
         %span.icon-bar
       .navbar-brand
-        = link_to "Photogram", root_path
+        = link_to "Appisodes", root_path
     .collapse.navbar-collapse#bs-navbar-collapse-1
       %ul.nav.navbar-nav.navbar-right
         - if user_signed_in?
           %li
-            = link_to "New Presentation", new_presentation_path
+            = link_to "New Eps", new_presentation_path
           %li
             = link_to "Logout", destroy_user_session_path, method: :delete
         - else
