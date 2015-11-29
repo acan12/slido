@@ -33,14 +33,7 @@ class PresentationsController < ApplicationController
     rescue
       redirect_to new_moderator_topic_path
     end
-    # respond_to do |format|
-    # 
-    #   if @presentation.save
-    #     redirect_to edit_presentation_path(@presentation), :notice =>  'Presentation was successfully created.'
-    #   else
-    #     format.html { render :action =>  "new" }
-    #   end
-    # end
+
   end
   
   
@@ -61,10 +54,10 @@ class PresentationsController < ApplicationController
   
 
   def destroy
-    ppt = Presentation.find params[:id]
+    ppt = Presentation.find_by_id_or_permalink params[:id]
     ppt.destroy
     
-    redirect_to presentations_path
+    redirect_to root_path
   end
   
   # AJAX

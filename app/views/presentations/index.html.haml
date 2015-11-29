@@ -3,11 +3,14 @@
   .row
     - @presentations.each do |ppt|
       .col-lg-2.col-sm-3.col-xs-4
+        %span{ style: "float: right;"}= link_to "&times;".html_safe, presentation_path(ppt), method: 'delete'
         - image_url = ppt.posts.present? ? ppt.posts.order("created_at ASC").first.image.url(:medium) : "http://placehold.it/200x200"
         = link_to presentation_path(ppt) do
           = image_tag image_url, class: "thumbnail", width: "200px", style: "max-width: 100%; margin: 10px; height: 200px; width: 200px;"
         .footer{style: "padding-left: 10px"}
           %span= ppt.title
-          %span.pull-right= link_to "Edit", edit_presentation_path(ppt)
+          %span.pull-right
+            = link_to "Edit", edit_presentation_path(ppt)
+            
         
         

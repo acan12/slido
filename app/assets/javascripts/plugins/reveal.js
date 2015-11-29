@@ -1604,7 +1604,7 @@
 					dom.slides.style.top = '50%';
 					dom.slides.style.bottom = 'auto';
 					dom.slides.style.right = 'auto';
-					transformSlides( { layout: 'translate(-50%, -50%) scale('+ scale +')' } );
+					transformSlides( { layout: 'translate(-50%, -50%)' } );
 				}
 			}
 

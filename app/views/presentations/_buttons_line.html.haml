@@ -1,0 +1,17 @@
+.col-md-3
+  = image_tag @presentation.user.avatar.url, style: "width: 24px; height: 24px; "
+  - username = @presentation.user.try(:user_name)
+  = link_to username.humanize, profiles_show_path(user_name: username)
+
+
+.col-md-9{ style: "text-align: right;"}
+
+  %span#share.glyphicon.glyphicon-share{style: "cursor: pointer;", title: "Copylink", permalink: presentation_url(id: @presentation.permalink.to_s)}
+  copylink
+  = "&nbsp;".html_safe
+  - if @presentation.user.likes?(@presentation)
+    %span#like.glyphicon.glyphicon-heart{ppt: @presentation.id, style: "cursor: pointer;", title: "Like"}
+  - else  
+    %span#like.glyphicon.glyphicon-heart-empty{ppt: @presentation.id, style: "cursor: pointer;", title: "UnLike"}
+
+  %span#like-text= "#{@presentation.likers_count} likes"

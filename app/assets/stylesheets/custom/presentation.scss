@@ -1,9 +1,12 @@
 #presentation {
   padding: 0px 0px;
   background: #ababab;
-  height: 80%;
+  height: 640px;
+  width: 640px;
+  font-size: 20px;
+  
   .reveal { 
-    .controls { left: 56%; top: 50px;} 
+    .controls { left: 22%; top: 50%;} 
     .speaker-notes {  
         max-height: 30%; 
         height: 50px; 
@@ -13,18 +16,20 @@
         bottom: 0px}
     .slide-number {
         background: orange;
+        top: 70px;
         right: 98%;
         left: 10px;
         width: 40px;
+        height: 20px;
     }
     .navigate-up, .navigate-down, .navigate-left {
       display: none;
     }
 /*    .navigate-left { border-right-color: green;  left: 30px; }*/
-    .navigate-right { border-left-color: green;}    
+    .navigate-right { border-left-color: orange;}    
     
   }
-  font-size: 20px;
+
   section { img { max-width: 100%; max-height: 100%;}}
   
 }
@@ -32,7 +37,7 @@
     #presentation {
       height: 50%;
       margin-bottom: 20px;
-      .reveal { .controls { left: 5%; top: 40% } }
+      .reveal { .controls { left: 30%; top: 30% } }
     }
     
     #postcomment {   overflow-y: auto;height: 50%; position: relative;}

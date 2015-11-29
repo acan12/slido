@@ -2,25 +2,10 @@
   .row
     #presentation.col-md-8
       = render "live_slides"
-    .col-md-2
-      = image_tag @presentation.user.avatar.url, style: "width: 24px; height: 24px; "
-      - username = @presentation.user.try(:user_name)
-      = link_to username.humanize, profiles_show_path(user_name: username)
-    
-      
-    .col-md-2{ style: "text-align: right; padding-top: 5px;"}
-      
-      %span#share.glyphicon.glyphicon-share{style: "cursor: pointer;", title: "Copylink", permalink: presentation_url(id: @presentation.permalink.to_s)}
-      copylink
-      = "&nbsp;".html_safe
-      - if @presentation.user.likes?(@presentation)
-        %span#like.glyphicon.glyphicon-heart{ppt: @presentation.id, style: "cursor: pointer;", title: "Like"}
-      - else  
-        %span#like.glyphicon.glyphicon-heart-empty{ppt: @presentation.id, style: "cursor: pointer;", title: "UnLike"}
+    #buttons-line.col-md-5{ style: "padding: 12px 0px;"}
+      = render "buttons_line"
 
-      %span#like-text= "#{@presentation.likers_count} likes" 
-
-    #postcomment.col-lg-4.col-md-5
+    #postcomment.col-md-5
       = render "post_comments"
 
   
@@ -34,15 +19,19 @@
         showNotes: true,
         slideNumber: 'c/t',
         loop: true,
-        transition: 'concave'
+        transition: 'convex'
       });
       
 
 
-      /* fade effect for navigator control
-      / $("#presentation, .slides > img").mouseenter(function(){
-      /   $(".navigate-right").fadeIn();
-      / }).mouseout(function(){
-      /   $(".navigate-right").fadeOut();
-        }) */
+      //fade effect for navigator control
+      $(".well").mouseover(function(){
+          $(".well").mouseenter(function(){
+            $(".controls").fadeOut();
+          });
+      
+          $(".well").mouseout(function(){
+            $(".controls").fadeIn();
+          });
+      });
     });

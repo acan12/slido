@@ -14,8 +14,6 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require bootstrap-sprockets
-//= require turbolinks
-//= require jquery.turbolinks
 //= require posts
 //= require comments
 //
@@ -24,6 +22,4 @@
 //= require plugins/jquery.fileupload
 //= require plugins/reveal
 //= require plugins/head.min
-//= require plugins/classList
-//= require plugins/zoom
 //= require plugins/clipboard
