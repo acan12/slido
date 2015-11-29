@@ -3410,11 +3410,15 @@
 
 		// ... or using an <aside class="notes"> element
 		var notesElement = slide.querySelector( 'aside.notes' );
-		if( notesElement ) {
-			return notesElement.innerHTML;
-		}
+    if( notesElement ) {
+      console.log("word notes: "+notesElement.length)
+      var slideNo = getState().indexh
+      if((slideNo == 0) && (notesElement.innerHTML.length == 0)) // first slide
+        return "  "
+		  return notesElement.innerHTML;
+    }
 
-		return null;
+		//return null;
 
 	}
 

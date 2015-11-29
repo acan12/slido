@@ -1,8 +1,13 @@
 .reveal
   / Any section element inside of this container is displayed as a slide
   .slides
-    - @presentation.posts.order("created_at asc").each do |post|
-      %section
-        %aside.notes= post.caption
-        = image_tag post.image.url, style: "width: 640px; height: 360px;"
+    - @presentation.posts.order("created_at asc").each_with_index do |post, i|
+      - if i == 0
+        %section
+          %aside.notes{ style: "display: block;"}= post.caption
+          = image_tag post.image.url, style: "width: 640px; height: 360px;"
+      - else
+        %section
+          %aside.notes= post.caption
+          = image_tag post.image.url, style: "width: 640px; height: 360px;"
 
