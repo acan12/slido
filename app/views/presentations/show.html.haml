@@ -32,10 +32,15 @@
       Reveal.initialize({
         progress: false,
         showNotes: true,
-        slideNumber: true,
+        slideNumber: 'c/t',
         loop: true,
         transition: 'concave'
       });
 
+      /* fade effect for navigator control
+      / $("#presentation, .slides > img").mouseenter(function(){
+      /   $(".navigate-right").fadeIn();
+      / }).mouseout(function(){
+      /   $(".navigate-right").fadeOut();
+        }) */
     });
-    

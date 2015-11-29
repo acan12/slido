@@ -10,7 +10,7 @@ class PresentationsController < ApplicationController
   end
   
   def edit
-    @presentation = Presentation.find(params[:id])
+    @presentation = Presentation.find_by_id_or_permalink(params[:id])
   end
   
   def show

@@ -22,7 +22,7 @@ class PostsController < ApplicationController
       flash[:success] = "Your post has been created!"
       redirect_to root_path
     else
-      flash[:alert] = "Your new post couldn't be created!  Please check the form."
+      flash[:alert] = @post.errors.first.join(" ")
       render :new
     end
   end

@@ -7,13 +7,16 @@
     %table.table.table-hover
       %thead
         %tr
-          %th.column-01 
-          %th.column-02 Caption
-          %th.column-03 Picture
-          %th.column-04 
+          %th.column-01 No. Slide
+          %th.column-02 
+          %th.column-03 Caption
+          %th.column-04 Picture
+          %th.column-05 
       %tbody
-        - @presentation.posts.order("created_at ASC").each do |post|
+        - @presentation.posts.order("created_at ASC").each_with_index do |post, i|
           %tr
+            %td.column-01
+              = "[#{i+1}]"
             %td.column-01
               %button.btn.btn-labeled.btn-primary{"data-toggle" => "modal", "data-target": "#modal-post#{post.id}", :type => "button"}
                 %span.btn-label

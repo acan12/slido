@@ -2593,7 +2593,7 @@
 					'<span class="slide-number-b">'+ b +'</span>';
 		}
 		else {
-			return '<span class="slide-number-a">'+ a +'</span>';
+			return '<span class="slide-number-a">page '+ a +'</span>';
 		}
 
 	}

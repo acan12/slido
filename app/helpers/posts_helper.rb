@@ -1,3 +1,4 @@
+## NOT USE ANYMORE FOR VOTABLE , REPLACE WITH 
 module PostsHelper
   def display_likes(post)
     votes = post.votes_for.up.by_type(User)

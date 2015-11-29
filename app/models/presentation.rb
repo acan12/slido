@@ -4,14 +4,13 @@ class Presentation < ActiveRecord::Base
   has_many :comments, dependent: :destroy  
   
   acts_as_likeable
-  # acts_as_votable
   
   has_permalink :title
 
   validates :user_id, presence: true
   validates :title, presence: true
 
-  after_save :generate_and_save_permalink
+  after_create :generate_and_save_permalink
   
   def generate_and_save_permalink
     self.update(permalink: self.generate_permalink!)
