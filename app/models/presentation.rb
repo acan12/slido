@@ -12,8 +12,9 @@ class Presentation < ActiveRecord::Base
 
   after_create :generate_and_save_permalink
   
+  # permalink generate by random
   def generate_and_save_permalink
-    self.update(permalink: self.generate_permalink!)
+    self.update(permalink: SecureRandom.base64(8))
     self.permalink
   end
   
