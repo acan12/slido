@@ -23,7 +23,7 @@ class PresentationsController < ApplicationController
       @presentation = Presentation.create(presentation_params.merge!({user_id: current_user.id}))
       respond_to do |format|
         if @presentation.present?
-          format.html { redirect_to edit_presentation_path(@presentation), :notice =>  'Presentation was successfully created.' }
+          format.html { redirect_to edit_presentation_url(@presentation), :notice =>  'Presentation was successfully created.' }
   
         else
           format.html { render :action =>  "new" }
