@@ -13,12 +13,12 @@
 = content_for :scripts do
   :javascript
     $(function(){
-
       Reveal.initialize({
         progress: false,
         showNotes: true,
         loop: true,
-        transition: 'convex'
+        transition: 'slide|fade',
+        transitionSpeed: 'fast'
       });
       
 

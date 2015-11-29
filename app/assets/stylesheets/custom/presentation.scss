@@ -1,7 +1,7 @@
 #presentation {
   padding: 0px 0px;
   background: #ababab;
-  height: 640px;
+  height: 91.5%;
   width: 640px;
   font-size: 20px;
   
@@ -27,6 +27,7 @@
     }
 /*    .navigate-left { border-right-color: green;  left: 30px; }*/
     .navigate-right { border-left-color: orange;}    
+    .img-slide { max-width: 640px; max-height: 360px;}
     
   }
 
