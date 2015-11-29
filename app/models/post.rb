@@ -25,7 +25,7 @@ class Post < ActiveRecord::Base
       height = dimensions.height
 
       if width < 640 && height < 360
-        errors[''] << " dimensions are too small. For a good quality background please upload a larger image. Minimum width: 800px, minimum height: 360px"
+        errors[''] << " dimensions are too small. For a good quality background please upload a larger image. Minimum width: 640px, minimum height: 360px"
       end
     end
   end
