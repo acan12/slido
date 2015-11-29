@@ -18,10 +18,11 @@ class PresentationsController < ApplicationController
   end
   
   def create
-    @presentation = current_user.presentations.build(presentation_params)
+    
     begin
+      @presentation = Presentation.create(presentation_params.merge!({user_id: current_user.id}))
       respond_to do |format|
-        if @presentation.save
+        if @presentation.present?
           format.html { redirect_to edit_presentation_path(@presentation), :notice =>  'Presentation was successfully created.' }
   
         else
@@ -76,6 +77,6 @@ class PresentationsController < ApplicationController
   private
   
   def presentation_params
-    params.require(:presentation).permit(:title)
+    params.require(:presentation).permit(:title, :user_id)
   end
 end

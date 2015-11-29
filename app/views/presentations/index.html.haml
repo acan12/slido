@@ -8,5 +8,6 @@
           = image_tag image_url, class: "thumbnail", width: "200px", style: "max-width: 100%; margin: 10px; height: 200px; width: 200px;"
         .footer{style: "padding-left: 10px"}
           %span= ppt.title
+          %span.pull-right= link_to "Edit", edit_presentation_path(ppt)
         
         
