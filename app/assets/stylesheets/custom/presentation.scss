@@ -6,7 +6,7 @@
   font-size: 20px;
   
   .reveal { 
-    .controls { left: 22%; top: 50%;} 
+    .controls { left: 40%; bottom: 10%; position: absolute; display: none; } 
     .speaker-notes {  
         max-height: 30%; 
         height: 80px; 
@@ -37,8 +37,21 @@
 @media only screen and (max-width: 500px) {
     #presentation {
       height: 50%;
+      width: 100%;
       margin-bottom: 20px;
-      .reveal { .controls { left: 30%; top: 30% } }
+      .reveal { 
+        .controls { left: 30%; top: 30%; display: block; } 
+        .speaker-notes {  
+            max-height: 30%; 
+            height: 50px; 
+            width: 100%; 
+            left: 0px; 
+            text-align: center; 
+            bottom: 0px}
+        .img-slide { width: 100%; height: 360px;}    
+      }
+      
+      
     }
     
     #postcomment {   overflow-y: auto;height: 50%; position: relative;}

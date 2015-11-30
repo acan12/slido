@@ -21,16 +21,21 @@
         transitionSpeed: 'fast'
       });
       
-
-
-      //fade effect for navigator control
-      $(".well").mouseover(function(){
-          $(".well").mouseenter(function(){
-            $(".controls").fadeOut();
-          });
       
-          $(".well").mouseout(function(){
+      
+      //fade effect for navigator control just only for web
+      if( /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ) {
+          console.log("access from mobile")
+      } else {
+        $(".controls").fadeOut(); // default hide the control
+        $("div#presentation")
+          .mouseenter(function(){
             $(".controls").fadeIn();
-          });
-      });
+        }).mouseleave(function(){
+            $(".controls").fadeOut();
+        });
+        console.log("access from web")
+      }
+      
+
     });
