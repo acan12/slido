@@ -5,6 +5,10 @@
       .col-lg-2.col-sm-3.col-xs-4
         - if current_user == ppt.user
           %span{ style: "float: right;"}= link_to "&times;".html_safe, presentation_path(ppt), method: 'delete'
+        - else
+          %span{ style: "float: right;"}= "x"
+          
+          
         - image_url = ppt.posts.present? ? ppt.posts.order("created_at ASC").first.image.url(:medium) : "http://placehold.it/200x200"
         = link_to presentation_path(ppt) do
           = image_tag image_url, class: "thumbnail", width: "200px", style: "max-width: 100%; margin: 10px; height: 200px; width: 200px;"
