@@ -19,7 +19,5 @@
 //
 //= require circle-progress
 //= require jquery.superslides.min
-//= require plugins/jquery.fileupload
-//= require plugins/reveal
 //= require plugins/head.min
 //= require plugins/clipboard
